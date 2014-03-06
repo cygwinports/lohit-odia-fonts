@@ -1,0 +1,28 @@
+inherit font
+
+NAME="font-lohit-odia-ttf"
+VERSION=2.5.5
+RELEASE=1
+CATEGORY="X11"
+SUMMARY="Lohit Odia (Oriya) font"
+DESCRIPTION="Lohit ('Red' in Sanskrit) is a font family which supports various
+Indic scripts."
+HOMEPAGE="https://fedorahosted.org/lohit/"
+SRC_URI="https://fedorahosted.org/releases/l/o/lohit/lohit-odia-${VERSION}.tar.gz"
+SRC_DIR="lohit-odia-${VERSION}"
+
+src_compile() {
+	lndirs
+	cd ${B}
+	cygmake ttf
+}
+
+src_install() {
+	cd ${B}
+	fontinto TTF
+	dofont *.ttf
+
+	dofontconf *.conf
+
+	dodoc OFL.txt
+}
